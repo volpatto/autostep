@@ -1,37 +1,18 @@
 # A generic blank Python project
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.com/volpatto/blank-python-project.svg?branch=master)](https://travis-ci.com/volpatto/blank-python-project)
-![](https://github.com/volpatto/blank-python-project/workflows/linux/badge.svg?branch=master)
-![](https://github.com/volpatto/blank-python-project/workflows/osx/badge.svg?branch=master)
-![](https://github.com/volpatto/blank-python-project/workflows/windows/badge.svg?branch=master)
-[![codecov](https://codecov.io/gh/volpatto/blank-python-project/branch/master/graph/badge.svg)](https://codecov.io/gh/volpatto/blank-python-project)
-[![Documentation Status](https://readthedocs.org/projects/blank-python-project/badge/?version=latest)](https://blank-python-project.readthedocs.io/en/latest/?badge=latest)
+![](https://github.com/volpatto/autostep/workflows/linux/badge.svg?branch=master)
+![](https://github.com/volpatto/autostep/workflows/osx/badge.svg?branch=master)
+![](https://github.com/volpatto/autostep/workflows/windows/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/volpatto/autostep/branch/master/graph/badge.svg)](https://codecov.io/gh/volpatto/autostep)
 
-This repo provides a scratch of a Python project. Its purpose is to serve as starting point for
-the development of a Python project based on a minimal working structure.
+Sometimes we don't have analytical derivatives available when we need it, so we have to perform numerical derivatives to compute it in a given point. The problem is that the step used for such computations can introduce several errors when the step is too large or too small.
 
-## Covered features
-
-* A preconfigured setup.py file following the suggestions from [here](https://github.com/kennethreitz/setup.py);
-* [Sphinx](http://www.sphinx-doc.org/en/master/) autodocumentation with [autodoc](https://docs-python2readthedocs.readthedocs.io/en/master/code-doc.html);
-* [Travis CI](https://travis-ci.com) minimal configuration;
-* [GitHub Actions](https://github.com/features/actions) workflows with minimal configurations for latest Ubuntu, macOS and Windows;
-* Tests with [pytest](https://docs.pytest.org/en/latest/);
-* Hierarchical structure to a python package as suggested by ["The Hitchhiker’s Guide to Python"](https://docs.python-guide.org/) (highly recommended reading);
-* A [Read The Docs](https://readthedocs.org/) configuration scratch;
-* [pre-commit](https://pre-commit.com/) to perform git hooks before commits. The following plugins are being used:
-    - trailing-whitespace
-    - end-of-file-fixer
-    - black (default options combined with customized line length to 100 chars per line)
-    - blacken-docs
-* Coverage of the package with [Codecov](https://codecov.io/).
+How we could solve? Well, this is what `autostep` is trying to solve! Details we be provided in a more advanced stage of this project.
 
 ## Contributions
 
-Contributions are VERY welcome. But please be aware of the purpose of the repo: **A minimal working structure.** If you want to add a feature which is very particular to your needs, please analyse if it fits the objective.
-
-Suggestions and advices are welcome, feel free to open an Issue or send me an email.
+This project is an under early-stage development. Unfortunately, public contributions is not possible right now, but exceptions can be accepted. Please contact me if you have interest.
 
 ## Contact
 
