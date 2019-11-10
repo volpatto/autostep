@@ -37,3 +37,4 @@ jobs:
       run: |
         source activate autostep
         pytest . -n auto
+        pytest $AUTOSTEP_NOTEBOOKS_DIR --nbval

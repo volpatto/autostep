@@ -37,6 +37,7 @@ jobs:
       run: |
         source activate autostep
         pytest . -n auto --cov-config=.coveragerc --cov-report=xml --cov=autostep
+        pytest $AUTOSTEP_NOTEBOOKS_DIR --nbval
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.3
       with:
