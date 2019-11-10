@@ -40,8 +40,10 @@ jobs:
         source activate autostep
     - name: pre-commit Checkers and Formatters
       run: |
+        source activate autostep
         pre-commit install
         pre-commit run --all-files
     - name: Test with pytest
       run: |
+        source activate autostep
         pytest .
