@@ -11,7 +11,6 @@ def x_range():
     x_initial = 0.0
     x_final = 5.0
     num_of_points = 20
-
     return np.linspace(x_initial, x_final, num_of_points)
 
 
