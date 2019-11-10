@@ -29,7 +29,7 @@ jobs:
     - name: Setup conda and env
       run: |
         bash .github/workflows/scripts/conda_setup.sh
-        source activate autostep
+        conda activate autostep
     - name: pre-commit Checkers and Formatters
       run: |
         pre-commit install
