@@ -25,21 +25,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install conda
-      run: |
-        wget -O miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-        rm -rf $HOME/miniconda
-        bash miniconda.sh -b -p $HOME/miniconda
+      run: bash .github/workflows/scripts/conda_install_linux.sh
     - name: Include Conda in PATH
       run: echo ::add-path::$HOME/miniconda/bin
     - name: Setup conda and env
-      run: |
-        conda config --set always_yes yes --set changeps1 no
-        conda config --add channels conda-forge
-        conda install conda-devenv
-        conda update -q conda
-        conda info -a
-        conda devenv
-        source activate autostep
+      run: bash .github/workflows/scripts/conda_setup.sh
     - name: pre-commit Checkers and Formatters
       run: |
         source activate autostep
