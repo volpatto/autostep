@@ -4,6 +4,18 @@ import numpy as np
 
 from autostep.strategies import dx_min_cut, dx_relative_evaluation_order
 from autostep.numerical_derivatives import df_dx_numerical
+from tests.benchmarks import (
+    f_increasing_monotonic,
+    f_decreasing_monotonic,
+    f_non_monotonic,
+    f_nearly_constant,
+)
+from tests.benchmarks import (
+    dfdx_increasing_monotonic,
+    dfdx_decreasing_monotonic,
+    dfdx_non_monotonic,
+    dfdx_nearly_constant,
+)
 
 
 @pytest.fixture
@@ -12,38 +24,6 @@ def x_range():
     x_final = 5.0
     num_of_points = 20
     return np.linspace(x_initial, x_final, num_of_points)
-
-
-def f_increasing_monotonic(x):
-    return x * x * x - x * x + x - 5
-
-
-def f_decreasing_monotonic(x):
-    return -x * x * x - x * x + x - 5
-
-
-def f_non_monotonic(x):
-    return np.sin(x) * np.exp(-x)
-
-
-def f_nearly_constant(x):
-    return np.sin(x) + 1e14
-
-
-def dfdx_increasing_monotonic(x):
-    return 3 * x * x - 2 * x + 1
-
-
-def dfdx_decreasing_monotonic(x):
-    return -3 * x * x - 2 * x + 1
-
-
-def dfdx_non_monotonic(x):
-    return np.exp(-x) * (np.cos(x) - np.sin(x))
-
-
-def dfdx_nearly_constant(x):
-    return np.cos(x)
 
 
 @pytest.mark.parametrize(
@@ -92,3 +72,13 @@ def test_dx_relative_evaluation_order(f, dfdx_exact, rel_error, x_range):
         dfdx_exact(x_range)
     )
     assert relative_error_l2 < rel_error
+
+
+@pytest.mark.parametrize(
+    "f", [f_increasing_monotonic, f_decreasing_monotonic, f_non_monotonic, f_nearly_constant,],
+)
+def test_min_cut_estimation_with_too_high_tolerance(f, x_range):
+    tol = 1e1
+    f_evaluations = f(x_range)
+    with pytest.raises(RuntimeError, match=r"No valid step can be calculated."):
+        dx_min_cut(f_evaluations, tol=tol)

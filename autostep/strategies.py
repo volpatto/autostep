@@ -39,15 +39,11 @@ def dx_min_cut(evaluations: np.ndarray, tol: float = 1e-12) -> np.float64:
     next_index = 1
     num_of_evaluations = len(sorted_evaluations)
     while dx < tol:
-        #         print(f"{num_of_evaluations}\t{next_index}\t{dx}\t{scaling_factor}")
         if next_index == num_of_evaluations:
             raise RuntimeError("No valid step can be calculated.")
 
         dx = scaling_factor * np.abs(sorted_evaluations[next_index] - sorted_evaluations[0])
         next_index += 1
-
-    if dx < tol:
-        raise RuntimeError("No significant step can be estimated.")
 
     return dx
 
