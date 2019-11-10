@@ -22,8 +22,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Install conda
-      run: bash .github/workflows/scripts/conda_install_osx.sh
+#    - name: Install conda
+#      run: bash .github/workflows/scripts/conda_install_osx.sh
     - name: Include $CONDA in $PATH
       run: echo ::add-path::$CONDA/bin
     - name: Setup conda and env
@@ -34,7 +34,7 @@ jobs:
         conda update -q conda
         conda info -a
         conda devenv
-        conda activate autostep
+        source activate autostep
     - name: pre-commit Checkers and Formatters
       run: |
         pre-commit install
