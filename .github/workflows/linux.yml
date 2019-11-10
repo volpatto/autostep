@@ -25,9 +25,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install conda
-      run: .github/workflows/scripts/conda_install_linux.sh
+      run: bash .github/workflows/scripts/conda_install_linux.sh
     - name: Setup conda and env
-      run: .github/workflows/scripts/conda_setup.sh
+      run: bash .github/workflows/scripts/conda_setup.sh
     - name: pre-commit Checkers and Formatters
       run: |
         pre-commit install
