@@ -49,7 +49,7 @@ def dfdx_nearly_constant(x):
 @pytest.mark.parametrize(
     "f, dfdx_exact, rel_error",
     [
-        [f_increasing_monotonic, dfdx_increasing_monotonic, 1e-3],
+        [f_increasing_monotonic, dfdx_increasing_monotonic, 2e-3],
         [f_decreasing_monotonic, dfdx_decreasing_monotonic, 1e-3],
         [f_non_monotonic, dfdx_non_monotonic, 1e-3],
         pytest.param(
@@ -67,7 +67,7 @@ def test_dx_min_cut(f, dfdx_exact, rel_error, x_range):
     relative_error_l2 = np.linalg.norm(estimated_dfdx - dfdx_exact(x_range)) / np.linalg.norm(
         dfdx_exact(x_range)
     )
-    assert relative_error_l2 < 5e-3
+    assert relative_error_l2 < rel_error
 
 
 @pytest.mark.parametrize(
