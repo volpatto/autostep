@@ -76,6 +76,28 @@ def test_dx_relative_evaluation_order(f, dfdx_exact, rel_error, x_range):
     assert relative_error_l2 < rel_error
 
 
+@pytest.mark.xfail(reason="Corner case: constant functions derivatives.")
+def test_dx_relative_evaluation_order_for_constant_function(x_range):
+    f_evaluations = f_constant(x_range)
+    dx = dx_relative_evaluation_order(f_evaluations)
+    estimated_dfdx = df_dx_numerical(f_constant, x_range, dx)
+    relative_error_l2 = np.linalg.norm(estimated_dfdx - dfdx_exact(x_range)) / np.linalg.norm(
+        dfdx_exact(x_range)
+    )
+    assert relative_error_l2 < rel_error
+
+
+@pytest.mark.xfail(reason="Corner case: constant functions derivatives.")
+def test_dx_min_cut_for_constant_function(x_range):
+    f_evaluations = f_constant(x_range)
+    dx = dx_min_cut(f_evaluations)
+    estimated_dfdx = df_dx_numerical(f_constant, x_range, dx)
+    relative_error_l2 = np.linalg.norm(estimated_dfdx - dfdx_exact(x_range)) / np.linalg.norm(
+        dfdx_exact(x_range)
+    )
+    assert relative_error_l2 < rel_error
+
+
 @pytest.mark.parametrize(
     "f", [f_increasing_monotonic, f_decreasing_monotonic, f_non_monotonic, f_nearly_constant,],
 )
