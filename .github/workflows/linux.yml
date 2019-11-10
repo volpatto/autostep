@@ -16,8 +16,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      CODECOV_TOKEN: de59c83c-8155-401a-a5c5-56dd3ccc7e15
     strategy:
       max-parallel: 4
       fail-fast: false
@@ -42,5 +40,5 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.3
       with:
-        token: ${{env.CODECOV_TOKEN}}
+        token: ${{secrets.CODECOV_TOKEN}}
         file: ./coverage.xml
