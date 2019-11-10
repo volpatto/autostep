@@ -26,7 +26,14 @@ jobs:
       run: bash .github/workflows/scripts/conda_install_osx.sh
     - name: Setup conda and env
       run: |
-        bash .github/workflows/scripts/conda_setup.sh
+        bash $HOME/miniconda/etc/profile.d/conda.sh
+        export PATH=$HOME/miniconda/bin/:$PATH
+        conda config --set always_yes yes --set changeps1 no
+        conda config --add channels conda-forge
+        conda install conda-devenv
+        conda update -q conda
+        conda info -a
+        conda devenv
         conda activate autostep
     - name: pre-commit Checkers and Formatters
       run: |
