@@ -8,7 +8,7 @@
 
 Sometimes we don't have analytical derivatives available when we need it, so we have to perform numerical derivatives to compute it in a given point. The problem is that the step used for such computations can introduce several errors when the step is too large or too small.
 
-How we could solve? Well, this is what `autostep` is trying to solve! Details we be provided in a more advanced stage of this project.
+How we could solve? Well, this is what `autostep` is trying to solve! Details will be provided in a more advanced stage of this project.
 
 ## Contributions
 
