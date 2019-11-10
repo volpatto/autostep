@@ -36,4 +36,5 @@ jobs:
     - name: Test with pytest
       run: |
         source activate autostep
-        pytest .
+        pytest . -n auto
+        pytest $AUTOSTEP_NOTEBOOKS_DIR --nbval

@@ -14,3 +14,6 @@ autostep/__pycache__/
 .env/
 mypackage.egg-info/
 environment.yml
+
+# Notebooks
+notebooks/.ipynb_checkpoints

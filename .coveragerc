@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = gibbs
+source = autostep
 
 omit =
     tests/*
