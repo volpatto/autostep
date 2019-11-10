@@ -41,4 +41,6 @@ jobs:
         pre-commit run --all-files
     - name: Test with pytest
       run: |
+        set PATH=%CONDA%;%CONDA%\Scripts;%CONDA%\Library\bin;%PATH%
+        call activate autostep
         pytest .

@@ -27,7 +27,9 @@ jobs:
     - name: Install conda
       run: bash .github/workflows/scripts/conda_install_linux.sh
     - name: Setup conda and env
-      run: bash .github/workflows/scripts/conda_setup.sh
+      run: |
+        bash .github/workflows/scripts/conda_setup.sh
+        source activate autostep
     - name: pre-commit Checkers and Formatters
       run: |
         pre-commit install
