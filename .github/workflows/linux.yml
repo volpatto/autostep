@@ -26,10 +26,12 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install conda
       run: bash .github/workflows/scripts/conda_install_linux.sh
+    - name: Include $CONDA in $PATH
+      run: echo ::add-path::$CONDA/bin
     - name: Setup conda and env
       run: |
-        bash $HOME/miniconda/etc/profile.d/conda.sh
-        export PATH=$HOME/miniconda/bin/:$PATH
+#        bash $HOME/miniconda/etc/profile.d/conda.sh
+#        export PATH=$HOME/miniconda/bin/:$PATH
         conda config --set always_yes yes --set changeps1 no
         conda config --add channels conda-forge
         conda install conda-devenv
