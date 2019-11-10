@@ -1,8 +1,16 @@
+# IDE
 .idea/
+
+# Pytest files
 .pytest_cache/
 autostep/__pycache__/
+
+# Docs files
 ./docs/.build/
 ./docs/.static/
 ./docs/.templates/
+
+# Packing and virtual envs
 .env/
 mypackage.egg-info/
+environment.yml

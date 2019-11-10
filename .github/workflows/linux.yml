@@ -21,24 +21,13 @@ jobs:
     strategy:
       max-parallel: 4
       fail-fast: false
-      matrix:
-        python-version: [3.6, 3.7]
 
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Create virtualenv
-      run: |
-        pip install virtualenv
-        virtualenv .env
-        source .env/bin/activate
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+    - name: Install conda
+      run: .github/workflows/scripts/conda_install_linux.sh
+    - name: Setup conda and env
+      run: .github/workflows/scripts/conda_setup.sh
     - name: pre-commit Checkers and Formatters
       run: |
         pre-commit install

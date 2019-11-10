@@ -1,0 +1,33 @@
+name: autostep
+channels:
+  - conda-forge
+dependencies:
+  # Python stack
+  - python>=3.6
+  - black
+  - attrs
+  - numpy>=1.13.3
+  - scipy>=1.1.0
+  - matplotlib
+  - jupyter
+  - jupyter_contrib_nbextensions
+  - jupyter_nbextensions_configurator
+
+  # For tests
+  - pytest>=3.8.0
+  - pytest-cov
+  - pytest-xdist
+  - codecov
+  - nbval
+
+  # For documentation
+  - sphinx
+  - sphinx_rtd_theme
+
+  # Hooks for git
+  - pre-commit
+
+environment:
+  PYTHONPATH:
+    - {{ root }}
+  AUTOSTEP_NOTEBOOKS_DIR: {{ root }}/notebooks
