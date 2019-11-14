@@ -3,7 +3,7 @@ from pytest import approx
 import numpy as np
 
 from autostep.strategies import dx_min_cut, dx_relative_evaluation_order, _calculate_scaling_factor
-from autostep.numerical_derivatives import df_dx_numerical
+from autostep.numerical_derivatives import forward_diff
 from tests.benchmarks import (
     f_increasing_monotonic,
     f_decreasing_monotonic,
@@ -45,7 +45,7 @@ def x_range():
 def test_dx_min_cut(f, dfdx_exact, rel_error, x_range):
     f_evaluations = f(x_range)
     dx = dx_min_cut(f_evaluations)
-    estimated_dfdx = df_dx_numerical(f, x_range, dx)
+    estimated_dfdx = forward_diff(f, x_range, dx)
     relative_error_l2 = np.linalg.norm(estimated_dfdx - dfdx_exact(x_range)) / np.linalg.norm(
         dfdx_exact(x_range)
     )
@@ -69,7 +69,7 @@ def test_dx_min_cut(f, dfdx_exact, rel_error, x_range):
 def test_dx_relative_evaluation_order(f, dfdx_exact, rel_error, x_range):
     f_evaluations = f(x_range)
     dx = dx_relative_evaluation_order(f_evaluations)
-    estimated_dfdx = df_dx_numerical(f, x_range, dx)
+    estimated_dfdx = forward_diff(f, x_range, dx)
     relative_error_l2 = np.linalg.norm(estimated_dfdx - dfdx_exact(x_range)) / np.linalg.norm(
         dfdx_exact(x_range)
     )
@@ -80,7 +80,7 @@ def test_dx_relative_evaluation_order(f, dfdx_exact, rel_error, x_range):
 def test_dx_relative_evaluation_order_for_constant_function(x_range):
     f_evaluations = f_constant(x_range)
     dx = dx_relative_evaluation_order(f_evaluations)
-    estimated_dfdx = df_dx_numerical(f_constant, x_range, dx)
+    estimated_dfdx = forward_diff(f_constant, x_range, dx)
     relative_error_l2 = np.linalg.norm(estimated_dfdx - dfdx_exact(x_range)) / np.linalg.norm(
         dfdx_exact(x_range)
     )
@@ -91,7 +91,7 @@ def test_dx_relative_evaluation_order_for_constant_function(x_range):
 def test_dx_min_cut_for_constant_function(x_range):
     f_evaluations = f_constant(x_range)
     dx = dx_min_cut(f_evaluations)
-    estimated_dfdx = df_dx_numerical(f_constant, x_range, dx)
+    estimated_dfdx = forward_diff(f_constant, x_range, dx)
     relative_error_l2 = np.linalg.norm(estimated_dfdx - dfdx_exact(x_range)) / np.linalg.norm(
         dfdx_exact(x_range)
     )

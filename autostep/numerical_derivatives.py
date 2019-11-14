@@ -6,7 +6,7 @@ import numpy as np
 import types
 
 
-def df_dx_numerical(f: types.FunctionType, x: np.ndarray, dx: np.float64) -> np.ndarray:
+def forward_diff(f: types.FunctionType, x: np.ndarray, dx: np.float64) -> np.ndarray:
     """
     TODO: docs
 
