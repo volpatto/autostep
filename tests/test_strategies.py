@@ -2,7 +2,7 @@ import pytest
 from pytest import approx
 import numpy as np
 
-from autostep.strategies import dx_min_cut, dx_relative_evaluation_order, _calculate_scaling_factor
+from autostep.strategies import dx_min_cut, dx_relative_evaluation_order, _calculate_min_gap
 from autostep.numerical_derivatives import forward_diff
 from tests.benchmarks import (
     f_increasing_monotonic,
@@ -32,7 +32,7 @@ def x_range():
     "f, dfdx_exact, rel_error",
     [
         [f_increasing_monotonic, dfdx_increasing_monotonic, 2e-3],
-        [f_decreasing_monotonic, dfdx_decreasing_monotonic, 1e-3],
+        [f_decreasing_monotonic, dfdx_decreasing_monotonic, 3e-3],
         [f_non_monotonic, dfdx_non_monotonic, 1e-3],
         pytest.param(
             f_nearly_constant,
@@ -111,4 +111,4 @@ def test_min_cut_estimation_with_too_high_tolerance(f, x_range):
 def test_failing_scaling_factor_for_constant_function(x_range):
     f_sorted_evaluations = f_constant(x_range)
     with pytest.raises(RuntimeError, match=r"No valid max-min gap can be calculated."):
-        _calculate_scaling_factor(f_sorted_evaluations)
+        _calculate_min_gap(f_sorted_evaluations)
